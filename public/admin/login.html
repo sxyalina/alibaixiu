@@ -51,8 +51,14 @@
                 }, //如果不需要传，则注释掉 请求的参数，a=1&b=2或{a:1,b:2}或者jq中的serialize方法，或者formData收集
                 //dataType:'json',
                 success: function(result) { //成功的回调函数
-                    //console.log(result)
-                    location.href = 'index.html';
+                    //对用户的角色进行判断
+                    //如果是管理员就跳转到数据管理的首页面
+                    //如果是普通员工，就跳转到网站的首页面
+                    if (result.role == 'admin') {
+                        location.href = '/admin/index.html';
+                    } else {
+                        location.href = '/index.html';
+                    }
                 },
                 error: function(err) {
                     alert('用户名或密码错误')
